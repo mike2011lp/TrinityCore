@@ -160,6 +160,25 @@ enum UlduarGameObjects
     GO_HODIR_ICE_DOOR                       = 194441,
     GO_ARCHIVUM_DOOR                        = 194556,
 
+    GO_SHIELD_WALL                          = 194416,
+    GO_HODIR_ENTER                          = 194442,
+    GO_LIGHTNING_FIELD                      = 194559,
+    GO_MIMIRON_DOOR_1                       = 194774,
+    GO_MIMIRON_DOOR_2                       = 194775,
+    GO_MIMIRON_DOOR_3                       = 194776,
+    GO_YOGG_GATE                            = 194773,
+    GO_RUNIC_DOOR                           = 194557,
+    GO_STONE_DOOR                           = 194558,
+    GO_THORIM_LEVER                         = 194265,
+    GO_MIMIRON_TRAM                         = 194675,
+    GO_MIMIRON_ELEVATOR                     = 194749,
+    GO_DO_NOT_PUSH                          = 194739,
+    GO_KEEPERS_DOOR                         = 194255,
+    GO_CALL_TRAM_1                          = 194914,
+    GO_CALL_TRAM_2                          = 194912,
+    GO_ACTIVATE_TRAM_1                      = 194438,
+    GO_ACTIVATE_TRAM_2                      = 194437,
+
     // Algalon the Observer
     GO_CELESTIAL_PLANETARIUM_ACCESS_10      = 194628,
     GO_CELESTIAL_PLANETARIUM_ACCESS_25      = 194752,
@@ -242,6 +261,9 @@ enum UlduarData
     DATA_YS_MIMIRON,
     DATA_YS_HODIR,
     DATA_YOGGSARON_BRAIN,
+
+    // Instance Tram
+    DATA_CALL_TRAM,
 };
 
 enum UlduarWorldStates
