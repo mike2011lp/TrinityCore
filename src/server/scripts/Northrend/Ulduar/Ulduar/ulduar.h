@@ -84,6 +84,8 @@ enum UlduarNPCs
     NPC_LEVIATHAN_MKII                      = 33432,
     NPC_VX_001                              = 33651,
     NPC_AERIAL_COMMAND_UNIT                 = 33670,
+    NPC_ROCKET                              = 34050,
+    NPC_PROXIMITY_MINE                      = 34362,
 
     // Freya's Keepers
     NPC_IRONBRANCH                          = 32913,
@@ -207,6 +209,19 @@ enum UlduarData
     DATA_TOY_PILE_2,
     DATA_TOY_PILE_3,
 
+    // Mimiron
+    DATA_LEVIATHAN_MK_II,
+    DATA_MIMIRON_ELEVATOR,
+    DATA_AERIAL_UNIT,
+    DATA_VX_001,
+    DATA_MAGNETIC_CORE,
+
+    // Thorim
+    DATA_RUNIC_COLOSSUS,
+    DATA_RUNE_GIANT,
+    DATA_RUNIC_DOOR,
+    DATA_STONE_DOOR,
+
     // Hodir
     DATA_HODIR_RARE_CACHE,
 
@@ -220,6 +235,13 @@ enum UlduarData
     DATA_UNIVERSE_GLOBE,
     DATA_ALGALON_TRAPDOOR,
     DATA_BRANN_BRONZEBEARD_ALG,
+
+    // YoggSaron
+    DATA_YS_FREYA,
+    DATA_YS_THORIM,
+    DATA_YS_MIMIRON,
+    DATA_YS_HODIR,
+    DATA_YOGGSARON_BRAIN,
 };
 
 enum UlduarWorldStates

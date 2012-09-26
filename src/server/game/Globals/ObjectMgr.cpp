@@ -2203,8 +2203,6 @@ void ObjectMgr::LoadItemTemplates()
             }
 
         }
-        else
-            sLog->outError(LOG_FILTER_SQL, "Item (Entry: %u) does not exist in item.dbc! (not correct id?).", entry);
 
         if (itemTemplate.Class >= MAX_ITEM_CLASS)
         {

@@ -3049,6 +3049,8 @@ int32 Unit::GetCurrentSpellCastTime(uint32 spell_id) const
     return 0;
 }
 
+
+
 bool Unit::isInFrontInMap(Unit const* target, float distance,  float arc) const
 {
     return IsWithinDistInMap(target, distance) && HasInArc(arc, target);
@@ -16339,6 +16341,41 @@ bool Unit::IsInRaidWith(Unit const* unit) const
     else
         return false;
 }
+
+void Unit::GetRaidMember(std::list<Unit*> &nearMembers, float radius)
+{
+    Player* owner = GetCharmerOrOwnerPlayerOrPlayerItself();
+    if (!owner)
+        return;
+
+    Group* pGroup = owner->GetGroup();
+    if (pGroup)
+    {
+        for (GroupReference *itr = pGroup->GetFirstMember(); itr != NULL; itr = itr->next())
+        {
+            Player* Target = itr->getSource();
+
+            if (Target && !IsHostileTo(Target))
+            {
+                if (Target->isAlive() && IsWithinDistInMap(Target, radius))
+                    nearMembers.push_back(Target);
+
+                if (Guardian* pet = Target->GetGuardianPet())
+                    if (pet->isAlive() &&  IsWithinDistInMap(pet, radius))
+                        nearMembers.push_back(pet);
+            }
+        }
+    }
+    else
+    {
+        if (owner->isAlive() && (owner == this || IsWithinDistInMap(owner, radius)))
+            nearMembers.push_back(owner);
+        if (Guardian* pet = owner->GetGuardianPet())
+            if (pet->isAlive() && (pet == this && IsWithinDistInMap(pet, radius)))
+                nearMembers.push_back(pet);
+    }
+}
+
 
 void Unit::GetPartyMembers(std::list<Unit*> &TagUnitMap)
 {

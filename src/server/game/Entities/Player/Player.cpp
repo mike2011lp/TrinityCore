@@ -76,6 +76,7 @@
 #include "AccountMgr.h"
 #include "Battlefield.h"
 #include "BattlefieldMgr.h"
+#include "Config.h"
 
 #define ZONE_UPDATE_INTERVAL (1*IN_MILLISECONDS)
 
@@ -18278,33 +18279,37 @@ InstancePlayerBind* Player::BindToInstance(InstanceSave* save, bool permanent, b
     if (save)
     {
         InstancePlayerBind& bind = m_boundInstances[save->GetDifficulty()][save->GetMapId()];
-        if (bind.save)
+
+        if (ConfigMgr::GetBoolDefault("Instance.Bind", true))
         {
-            // update the save when the group kills a boss
-            if (permanent != bind.perm || save != bind.save)
+            if (bind.save)
+            {
+                // update the save when the group kills a boss
+                if (permanent != bind.perm || save != bind.save)
+                    if (!load)
+                    {
+                        PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_CHAR_INSTANCE);
+
+                        stmt->setUInt32(0, save->GetInstanceId());
+                        stmt->setBool(1, permanent);
+                        stmt->setUInt32(2, GetGUIDLow());
+                        stmt->setUInt32(3, bind.save->GetInstanceId());
+
+                        CharacterDatabase.Execute(stmt);
+                    }
+            }
+            else
                 if (!load)
                 {
-                    PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_CHAR_INSTANCE);
+                    PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_CHAR_INSTANCE);
 
-                    stmt->setUInt32(0, save->GetInstanceId());
-                    stmt->setBool(1, permanent);
-                    stmt->setUInt32(2, GetGUIDLow());
-                    stmt->setUInt32(3, bind.save->GetInstanceId());
+                    stmt->setUInt32(0, GetGUIDLow());
+                    stmt->setUInt32(1, save->GetInstanceId());
+                    stmt->setBool(2, permanent);
 
                     CharacterDatabase.Execute(stmt);
                 }
         }
-        else
-            if (!load)
-            {
-                PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_CHAR_INSTANCE);
-
-                stmt->setUInt32(0, GetGUIDLow());
-                stmt->setUInt32(1, save->GetInstanceId());
-                stmt->setBool(2, permanent);
-
-                CharacterDatabase.Execute(stmt);
-            }
 
         if (bind.save != save)
         {

@@ -2628,6 +2628,13 @@ LevelReq.Auction = 1
 LevelReq.Mail = 1
 
 #
+#     Instance.Bind
+#        Description: Enable or Disable Instance bind for Players and Groups
+#        Default:     0
+
+Instance.Bind = 0
+
+#
 #     PlayerDump.DisallowPaths
 #        Description: Disallow using paths in PlayerDump output files
 #        Default:     1

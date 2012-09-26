@@ -183,7 +183,7 @@ struct boss_twin_baseAI : public ScriptedAI
         me->ModifyAuraState(m_uiAuraState, true);
         /* Uncomment this once that they are flying above the ground
         me->SetLevitate(true);
-        me->SetFlying(true); */
+        me->SetCanFly(true); */
         m_bIsBerserk = false;
 
         m_uiSpecialAbilityTimer = MINUTE*IN_MILLISECONDS;

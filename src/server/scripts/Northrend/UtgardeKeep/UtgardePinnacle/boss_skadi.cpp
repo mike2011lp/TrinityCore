@@ -20,7 +20,7 @@ SDName: Boss_Skadi
 SDAuthor: LordVanMartin, JohnHoliver
 SD%Complete: 90%
 SDComment: <Known Bugs>
-               After Unmount() he appears to still be flying even with SetFlying(false)
+               After Unmount() he appears to still be flying even with SetCanFly(false)
            </Known Bugs>
 SDCategory: Utgarde Pinnacle
 Script Data End */
